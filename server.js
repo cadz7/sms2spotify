@@ -53,11 +53,15 @@ app.post('/sms', function(req, res) {
             url: 'https://sms2music.herokuapp.com/tracks/' + track.id
         }, function(err, responseData) { 
             if (!err) {
-              twiml.message('Successfully sent the song!');
-              res.send(twiml);
+              console.log('Successfully sent the song!');
+              twiml.say('Successfully sent the song!');
+              res.writeHead(200, {'Content-Type': 'text/xml'});
+              res.end(twiml.toString());
             } else {
-              twiml.message('Error in sending the song: ' + message);
-              res.send(twiml);
+              console.log('Error in sending the song: ' + message + ' to number: ' + to);
+              twiml.say('Error in sending the song: ' + message + ' to number: ' + to);
+              res.writeHead(200, {'Content-Type': 'text/xml'});
+              res.end(twiml.toString());
             }
         });
       });
