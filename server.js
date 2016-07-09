@@ -13,6 +13,7 @@ const spotifyApi = new SpotifyWebApi({
 
 const twilio = require('twilio');
 const client = twilio(process.env.TWILIO_ID, process.env.TWILIO_SECRET);
+var twiml = new twilio.TwimlResponse();
 
 /* -- End third party -- */
 const app = express();
@@ -49,25 +50,14 @@ app.post('/sms', function(req, res) {
         client.makeCall({
             to: to,
             from: '+16038194519', 
-            url: 'http://564fed1a.ngrok.io/tracks/' + track.id
+            url: 'https://sms2music.herokuapp.com/tracks/' + track.id
         }, function(err, responseData) { 
             if (!err) {
-              const responseLog = {
-                to: responseData.to_formatted,
-                message: message,
-                track: track.name,
-                artist: track.artists.name,
-                album: track.album.name,
-                preview: track.preview_url,
-                time: new Date()
-              };
-              fs.appendFile('response-log.txt', JSON.stringify(responseLog, undefined, 4) + '\n', function (err) {
-                if (err) throw err;
-              });
+              twiml.message('Successfully sent the song!');
+              res.send(twiml);
             } else {
-              fs.appendFile('error-log.txt', new Date() + ' ' + JSON.stringify(err, undefined, 4) + '\n', function (err) {
-                if (err) throw err;
-              });
+              twiml.message('Error in sending the song: ' + message);
+              res.send(twiml);
             }
         });
       });
