@@ -54,12 +54,12 @@ app.post('/sms', function(req, res) {
         }, function(err, responseData) { 
             if (!err) {
               console.log('Successfully sent the song!');
-              twiml.say('Successfully sent the song!');
+              twiml.message('Successfully sent the song!');
               res.writeHead(200, {'Content-Type': 'text/xml'});
               res.end(twiml.toString());
             } else {
               console.log('Error in sending the song: ' + message + ' to number: ' + to);
-              twiml.say('Error in sending the song: ' + message + ' to number: ' + to);
+              twiml.message('Error in sending the song: ' + message + ' to number: ' + to);
               res.writeHead(200, {'Content-Type': 'text/xml'});
               res.end(twiml.toString());
             }
