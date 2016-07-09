@@ -6,8 +6,8 @@ const fs = require('fs');
 /* -- Begin third party -- */
 const SpotifyWebApi = require('spotify-web-api-node');
 const spotifyApi = new SpotifyWebApi({
-  clientId : '00464140d58c4c9b929d496cbc3a078c',
-  clientSecret : '5cf500688e89410fb6adba5e1095fc76',
+  clientId : process.env.SPOTIFY_CLIENT,
+  clientSecret : process.env.SPOTIFY_SECRET,
   redirectUri : 'http://localhost:8888'
 });
 
