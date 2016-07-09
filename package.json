@@ -9,7 +9,6 @@
   "author": "Rakshit Shukla",
   "license": "ISC",
   "dependencies": {
-    "spotify-web-api-node": "^2.1.0",
     "bcrypt": "^0.8.5",
     "bcryptjs": "^2.2.1",
     "body-parser": "^1.13.2",
@@ -25,6 +24,8 @@
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",
     "request": "^2.44.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "spotify-web-api-node": "^2.1.0",
+    "twilio": "^2.9.1"
   }
 }
