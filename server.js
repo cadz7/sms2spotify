@@ -6,13 +6,13 @@ const fs = require('fs');
 /* -- Begin third party -- */
 const SpotifyWebApi = require('spotify-web-api-node');
 const spotifyApi = new SpotifyWebApi({
-  clientId : '00464140d58c4c9b929d496cbc3a078c',
-  clientSecret : '5cf500688e89410fb6adba5e1095fc76',
+  clientId : process.env.SPOTIFY_CLIENT,
+  clientSecret : process.env.SPOTIFY_SECRET,
   redirectUri : 'http://localhost:8888'
 });
 
 const twilio = require('twilio');
-const client = twilio('AC2206b84868fc34f9502977b54957db14', 'db2959bb2a20567ad88136b18af62fe5');
+const client = twilio(process.env.TWILIO_ID, process.env.TWILIO_SECRET);
 
 /* -- End third party -- */
 const app = express();
